@@ -1,5 +1,7 @@
 # Fractionated Morse Code Encoder/Decoder
 
+This program codes/decodes user input using a cipher called fractionated morse code. More information on this cipher at [this site](http://practicalcryptography.com/ciphers/fractionated-morse-cipher/). 
+
 ## Character Support:
 
 - Alphabet - `A-Z`
