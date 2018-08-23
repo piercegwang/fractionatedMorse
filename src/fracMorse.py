@@ -1,24 +1,29 @@
 import string
 import re
 
-morse_keys = {'A': '.-',     'B': '-...',   'C': '-.-.', 
-        'D': '-..',    'E': '.',      'F': '..-.',
-        'G': '--.',    'H': '....',   'I': '..',
-        'J': '.---',   'K': '-.-',    'L': '.-..',
-        'M': '--',     'N': '-.',     'O': '---',
-        'P': '.--.',   'Q': '--.-',   'R': '.-.',
-     	'S': '...',    'T': '-',      'U': '..-',
-        'V': '...-',   'W': '.--',    'X': '-..-',
-        'Y': '-.--',   'Z': '--..',
-        
-        '0': '-----',  '1': '.----',  '2': '..---',
-        '3': '...--',  '4': '....-',  '5': '.....',
-        '6': '-....',  '7': '--...',  '8': '---..',
-        '9': '----.',
-        
-        '.': '.-.-.-', '=': '-...-',  '?': '..--..',
-        '!': '---.'
-        }
+morse_keys = {
+	'A': '.-',		'B': '-...',	'C': '-.-.',
+	'D': '-..',		'E': '.',	'F': '..-.',
+	'G': '--.',    	'H': '....',   	'I': '..',
+	'J': '.---',   	'K': '-.-',    	'L': '.-..',
+	'M': '--',		'N': '-.',     	'O': '---',
+	'P': '.--.',   	'Q': '--.-',   	'R': '.-.',
+	'S': '...',    	'T': '-',      	'U': '..-',
+	'V': '...-',   	'W': '.--',    	'X': '-..-',
+	'Y': '-.--',   	'Z': '--..',
+
+	'0': '-----',	'1': '.----',  	'2': '..---',
+	'3': '...--',	'4': '....-',  	'5': '.....',
+	'6': '-....',  	'7': '--...',  	'8': '---..',
+	'9': '----.',
+
+	'&': '.-...',	"'": '.----.',	"'": '.----.',
+	'.': '.-.-.-',	'=': '-...-',	'@': '.--.-.',
+	')': '-.--.-',	'(': '-.--.',	':': '---...',
+	',': '--..--',	"'": '.----.',	'!': '-.-.--',
+	'.': '.-.-.-',	'-': '-....-',	'+': '.-.-.',
+	'"': '.-..-.',	'?': '..--..',	'/': '-..-.'
+    }
 
 rvmorse_keys = {v: k for k, v in morse_keys.items()}
 
@@ -27,7 +32,6 @@ fractionated_table = [
     '-..', '-.-', '-. ', '--.', '---', '-- ', '- .', '- -', '-  ',
     ' ..', ' .-', ' . ', ' -.', ' --', ' - ', '  .', '  -'
     ]
-
 
 letters = list(string.ascii_uppercase)
 
@@ -71,8 +75,8 @@ def doMorse(input, do): #Converts message to morse code
                     decipher += rvmorse_keys[citext]
                     citext = ''
         return decipher
-            
-            
+
+
 
 def hashKey(alphabet): #makes a dictionary with keys being the keyword alphabet
     new_alphabet = {}
@@ -80,7 +84,7 @@ def hashKey(alphabet): #makes a dictionary with keys being the keyword alphabet
         new_alphabet[fractionated_table[i]] = alphabet[i]
     return new_alphabet
 
-def fractionate(input, keyAlpha, do): #finally encoding/decoding
+def fractionate(input, keyAlpha, do): #encoding/decoding
     if do == True:
         coded = ''
         if(len(input)%3 != 0):
@@ -96,24 +100,27 @@ def fractionate(input, keyAlpha, do): #finally encoding/decoding
         for i in input:
             decoded+=switched[i]
         return decoded
-        
-        
+
+
 if __name__ == "__main__":
-    en_dec = input("Encoding or decoding? (Enter 1 | 2 respectively): ")
-    if en_dec == "1":
-        keyword = input("\nPlease enter your keyword: ")
-        keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
-        keyAlphabet = hashKey(keywordAlphabet)
-        message = input("\nPlease paste message here: ")
-        print(fractionate(doMorse(message, True), keyAlphabet, True) + "\n")
-    elif en_dec == "2":
-        keyword = input("\nPlease enter your keyword: ")
-        keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
-        print('Alphabet Key:' + keywordAlphabet)
-        keyAlphabet = hashKey(keywordAlphabet)
-        message = input("\nPlease enter coded message: ")
-        morse = fractionate(message, keyAlphabet, False)
-        print(morse)
-        print(doMorse(morse, False) + "\n")
-    
-    
+    repeating = True
+    while repeating:
+        en_dec = input("Encoding or decoding? (Enter 1 | 2 respectively): ")
+        if en_dec == "1":
+            keyword = input("\nPlease enter your keyword: ")
+            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
+            keyAlphabet = hashKey(keywordAlphabet)
+            message = input("Please paste message here: ")
+            print("\n" + fractionate(doMorse(message, True), keyAlphabet, True))
+        elif en_dec == "2":
+            keyword = input("Please enter your keyword: ")
+            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
+            keyAlphabet = hashKey(keywordAlphabet)
+            message = input("Please enter coded message: ")
+            morse = fractionate(message, keyAlphabet, False)
+            print("\nMorse Equivalent: " + morse)
+            print("Decoded Message: " + doMorse(morse, False))
+        repeat = input("\nWould you like to continue using this program? (y/n): ")
+        if(repeat.lower() == "n"):
+            repeating = False
+            print("Thanks for using this program. See you next time!")

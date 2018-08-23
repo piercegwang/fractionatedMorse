@@ -1,0 +1,4 @@
+([('fracMorse',
+   '/Users/piercewang/Documents/Projects/Morse '
+   'Code/fractionatedMorse/src/dist/fracMorse',
+   'EXECUTABLE')],)
