@@ -118,7 +118,6 @@ if __name__ == "__main__":
 	            keyAlphabet = hashKey(keywordAlphabet)
 	            message = input("Please enter coded message: ")
 	            morse = fractionate(message, keyAlphabet, False)
-	            print("\nMorse Equivalent: " + morse)
 	            print("Decoded Message: " + doMorse(morse, False))
 	        repeat = input("\nWould you like to continue using this program? (y/n): ")
 	        if(repeat.lower() == "n"):
