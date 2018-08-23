@@ -102,24 +102,27 @@ def fractionate(input, keyAlpha, do): #encoding/decoding
 
 
 if __name__ == "__main__":
-    repeating = True
-    while repeating:
-        en_dec = input("Encoding or decoding? (Enter 1 | 2 respectively): ")
-        if en_dec == "1":
-            keyword = input("\nPlease enter your keyword: ")
-            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
-            keyAlphabet = hashKey(keywordAlphabet)
-            message = input("Please paste message here: ")
-            print("\n" + fractionate(doMorse(message, True), keyAlphabet, True))
-        elif en_dec == "2":
-            keyword = input("Please enter your keyword: ")
-            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
-            keyAlphabet = hashKey(keywordAlphabet)
-            message = input("Please enter coded message: ")
-            morse = fractionate(message, keyAlphabet, False)
-            print("\nMorse Equivalent: " + morse)
-            print("Decoded Message: " + doMorse(morse, False))
-        repeat = input("\nWould you like to continue using this program? (y/n): ")
-        if(repeat.lower() == "n"):
-            repeating = False
-            print("Thanks for using this program. See you next time!")
+	try:
+	    repeating = True
+	    while repeating:
+	        en_dec = input("Encoding or decoding? (Enter 1 | 2 respectively): ")
+	        if en_dec == "1":
+	            keyword = input("\nPlease enter your keyword: ")
+	            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
+	            keyAlphabet = hashKey(keywordAlphabet)
+	            message = input("Please paste message here: ")
+	            print("\n" + fractionate(doMorse(message, True), keyAlphabet, True))
+	        elif en_dec == "2":
+	            keyword = input("Please enter your keyword: ")
+	            keywordAlphabet = createAlphabet(reduce_Keyword(keyword))
+	            keyAlphabet = hashKey(keywordAlphabet)
+	            message = input("Please enter coded message: ")
+	            morse = fractionate(message, keyAlphabet, False)
+	            print("\nMorse Equivalent: " + morse)
+	            print("Decoded Message: " + doMorse(morse, False))
+	        repeat = input("\nWould you like to continue using this program? (y/n): ")
+	        if(repeat.lower() == "n"):
+	            repeating = False
+	            print("Thanks for using this program. See you next time!")
+	except KeyboardInterrupt:
+		print("\nProgram Exited.")
