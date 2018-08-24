@@ -99,9 +99,7 @@ def fractionate(input, keyAlpha, do): #encoding/decoding
         for i in input:
             decoded+=switched[i]
         return decoded
-
-
-if __name__ == "__main__":
+def main():
 	try:
 	    repeating = True
 	    while repeating:
@@ -125,3 +123,8 @@ if __name__ == "__main__":
 	            print("Thanks for using this program. See you next time!")
 	except KeyboardInterrupt:
 		print("\nProgram Exited.")
+	except KeyError:
+		print("\nWrong key used. Please try again.")
+		main()
+if __name__ == "__main__":
+	main()
