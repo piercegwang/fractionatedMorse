@@ -1,5 +1,6 @@
 import string
 import re
+import random
 
 morse_keys = {
     'A': '.-',      'B': '-...',    'C': '-.-.',
@@ -56,7 +57,6 @@ def doMorse(input, do): #Converts message to morse code
                 morse+=morse_keys[char.upper()] + " "
             else:
                 morse+=" "
-        print("Morse: " + morse)
         return morse
     elif do == False:
         #input+=''
@@ -97,13 +97,17 @@ def fractionate(input, keyAlpha, do): #encoding/decoding
                 input+=" "
         message = re.findall('...', input)
         for i in message:
-            coded+=keyAlpha[i]
+            randint = random.randint(1,2)
+            if randint == 1:
+                coded+=keyAlpha[i]
+            else:
+                coded += keyAlpha[i].lower()
         return coded
     elif do == False:
         decoded = ''
         switched = {v: k for k, v in keyAlpha.items()}
         for i in input:
-            decoded+=switched[i]
+            decoded+=switched[i.upper()]
         return decoded
 def main():
     try:
