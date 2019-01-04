@@ -81,8 +81,6 @@ def doMorse(input, do): #Converts message to morse code
             citext=''
         return decipher
 
-
-
 def hashKey(alphabet): #makes a dictionary with keys being the keyword alphabet
     new_alphabet = {}
     for i in range(26):
